@@ -1,0 +1,15 @@
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html">
+    <sly data-sly-call="${clientlib.all @ categories='aempractice'}"/>
+</sly>
+
+<sly data-sly-use.model="com.softwhale.migration.core.models.AemPracticeModel"
+     data-sly-test.isAuthor="${wcmmode.edit || wcmmode.preview}"></sly>
+<div class="header">Component title: ${properties.title}</div>
+<img  data-sly-test="${model.backgroundImage && !isAuthor}" src="${model.imagePath}" width="200" height="200"/></img>
+<div data-sly-list.nav="${model.navItems}">
+    <b><a data-sly-test.isFirst="${navList.first}" href="${nav.navPath}">${nav.navTitle}</a></b>
+    <i><a data-sly-test.isLast="${navList.last}" href="${nav.navPath}">${nav.navTitle}</a></i>
+    <a data-sly-test="${!isFirst && !isLast}" href="${nav.navPath}">${nav.navTitle}</a>
+</div>
+<div class="author-mode" data-sly-test="${isAuthor}">Author mode</div>
+<div>Page title : ${pageProperties.jcr:title}, Page path: ${currentPage.path @extension='html'}</div>
